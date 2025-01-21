@@ -16,7 +16,7 @@ jobs:
         python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -27,12 +27,11 @@ jobs:
         channel-priority: strict
         show-channel-urls: true
         miniforge-version: latest
-        use-mamba: true
 
     - name: Configure conda and install code
       shell: bash -l {0}
       run: |
-        mamba install -y --file requirements.txt --file requirements-dev.txt python-build
+        conda install -y --file requirements.txt --file requirements-dev.txt python-build
         python -m pip install --no-deps --no-build-isolation .
 
     - name: test versions

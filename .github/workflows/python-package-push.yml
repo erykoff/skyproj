@@ -13,7 +13,7 @@ jobs:
         python-version: ['3.10']
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - uses: conda-incubator/setup-miniconda@v3
       with:
@@ -22,12 +22,11 @@ jobs:
         channel-priority: strict
         show-channel-urls: true
         miniforge-version: latest
-        use-mamba: true
 
     - name: Configure conda and install code
       shell: bash -l {0}
       run: |
-        mamba install -y --file requirements.txt --file requirements-dev.txt
+        conda install -y --file requirements.txt --file requirements-dev.txt
         python -m pip install --no-deps .
 
     - name: Lint with flake8
